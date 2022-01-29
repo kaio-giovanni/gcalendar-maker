@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Google Calendar events template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding: 10px 0px 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .header-title {
+            display: inline-block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 22px;
+            line-height: 24px;
+            padding-left: 8px;
+            position: relative;
+            top: 8px;
+            vertical-align: middle;
+            color: #5f6368;
+        }
+
+        .calendar {
+            margin: 0px 40px;
+        }
+
+        [data-toggle="calendar"] > .row > .hd-cell {
+            font-family: 'Roboto', sans-serif;
+            width: 14.28571428571429%;
+            border: 1px solid rgb(220, 220, 220);
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            height: 30px;
+            text-align: center;
+            background-color: rgb(3, 155, 229);
+            font-weight: bold;
+            padding-top: 4px;
+        }
+
+        [data-toggle="calendar"] > .row > .calendar-day {
+            font-family: 'Roboto', sans-serif;
+            width: 14.28571428571429%;
+            border: 1px solid rgb(220, 220, 220);
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            min-height: 120px;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        [data-toggle="calendar"] > .row > .calendar-day.calendar-no-current-month {
+            color: rgb(200, 200, 200);
+        }
+
+        [data-toggle="calendar"] > .row > .hd-cell:last-child {
+            border-right-width: 1px;
+        }
+
+        [data-toggle="calendar"] > .row > .calendar-day:last-child {
+            border-right-width: 1px;
+        }
+
+        [data-toggle="calendar"] > .row:last-child > .calendar-day {
+            border-bottom-width: 1px;
+        }
+
+        .calendar-day > time {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            font-size: 12px;
+            font-weight: 300;
+            width: 100%;
+            padding: 3px 10px 3px 1px;
+            margin: 3px 3px 3px 3px;
+            text-align: right;
+        }
+
+        .calendar-day > .events {
+            cursor: pointer;
+        }
+
+        .calendar-day > .events > .event {
+            margin: 15px 10px 1px 1px;
+        }
+
+        .calendar-day > .events > .event h4 {
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+            padding-top: 5px;
+        }
+
+        .calendar-day > .events > .event > .desc,
+        .calendar-day > .events > .event > .location,
+        .calendar-day > .events > .event > .datetime,
+        .calendar-day > .events > .event > .attending {
+            display: none;
+        }
+
+        .calendar-day > .events > .event > .progress {
+            height: 10px;
+        }
+
+        .col-xs-12 {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="https://i.ibb.co/MhTYh93/Google-Agenda.png"
+         alt="Google Agenda"
+         width="45"
+         height="45"
+    />
+    <span class="header-title">Google Calendar - <span th:text="${yearMonth}"></span> </span>
+</div>
+<div class="calendar" data-toggle="calendar">
+    <div class="row">
+        <div class="col-xs-12 hd-cell">SUN</div>
+        <div class="col-xs-12 hd-cell">MON</div>
+        <div class="col-xs-12 hd-cell">TUE</div>
+        <div class="col-xs-12 hd-cell">WED</div>
+        <div class="col-xs-12 hd-cell">THU</div>
+        <div class="col-xs-12 hd-cell">FRI</div>
+        <div class="col-xs-12 hd-cell">SAT</div>
+    </div>
+    <div class="row" th:each="weeklyNumber : ${weeklyList}">
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 1).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 1))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 2).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 2))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 3).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 3))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 4).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 4))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 5).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 5))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 6).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 6))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 calendar-day">
+            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 7).substring(8)}"></time>
+            <div class="events">
+                <div class="event">
+                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 7))}">
+                        <h4 th:text="${event.getSummary()}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
