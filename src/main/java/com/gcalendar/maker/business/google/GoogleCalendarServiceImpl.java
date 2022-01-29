@@ -28,8 +28,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 
     private final JacksonFactory jacksonFactory = JacksonFactory.getDefaultInstance();
 
-    @Override
-    public OAuth2Credentials getGoogleCredentials (User user, HttpTransportFactory httpTransport) throws IOException {
+    private OAuth2Credentials getGoogleCredentials (User user, HttpTransportFactory httpTransport) throws IOException {
         String refreshToken = user.getGoogleAccessToken();
         OAuth2Credentials credentials =
                 UserCredentials.newBuilder()
@@ -43,8 +42,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
         return credentials;
     }
 
-    @Override
-    public Calendar getGoogleService (User user) throws IOException {
+    private Calendar getGoogleService (User user) throws IOException {
         HttpTransportFactory httpTransport = new DefaultHttpTransportFactory();
         OAuth2Credentials credentials = getGoogleCredentials(user, httpTransport);
 
