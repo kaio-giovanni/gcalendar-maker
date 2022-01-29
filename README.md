@@ -2,6 +2,10 @@
 
 ### This project makes user calendars based on Google calendar
 
+#### Project Status
+
+🟡 In progress ️🛠️
+
 #### Project setup
 
 1. Execute the commands bellow:
