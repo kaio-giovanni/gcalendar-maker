@@ -3,6 +3,7 @@ package com.gcalendar.maker.business.google;
 import com.gcalendar.maker.dto.GoogleCalendarDto;
 import com.gcalendar.maker.entity.User;
 import com.gcalendar.maker.utils.DotEnvUtils;
+import com.gcalendar.maker.utils.TemplateUtils;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -15,6 +16,8 @@ import com.google.auth.http.HttpTransportFactory;
 import com.google.auth.oauth2.OAuth2Credentials;
 import com.google.auth.oauth2.UserCredentials;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -77,16 +80,22 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
         return calendarDTOS;
     }
 
-    public Map<String, List<GoogleCalendarDto>> groupCalendarDtoByStartDate(List<GoogleCalendarDto> calendarDtos) {
+    public Map<String, List<GoogleCalendarDto>> groupCalendarDtoByStartDate (List<GoogleCalendarDto> calendarDtos) {
         return calendarDtos
                 .stream()
                 .collect(Collectors.groupingBy(GoogleCalendarDto::getStartDate));
     }
 
+    public String getGoogleLoginPage () {
+        SpringTemplateEngine templateEngine = TemplateUtils.getTemplateEngine();
+        Context context = new Context();
+        return templateEngine.process("GoogleLogin.html", context);
+    }
+
     private static class DefaultHttpTransportFactory implements HttpTransportFactory {
 
         @Override
-        public HttpTransport create() {
+        public HttpTransport create () {
             try {
                 return GoogleNetHttpTransport.newTrustedTransport();
             } catch (GeneralSecurityException | IOException e) {

@@ -151,70 +151,70 @@
     </div>
     <div class="row" th:each="weeklyNumber : ${weeklyList}">
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 1).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 1).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 1))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 1))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 2).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 2).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 2))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 2))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 3).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 3).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 3))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 3))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 4).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 4).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 4))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 4))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 5).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 5).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 5))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 5))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 6).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 6).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 6))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 6))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 calendar-day">
-            <time th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 7).substring(8)}"></time>
+            <time th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 7).substring(8)}"></time>
             <div class="events">
                 <div class="event">
-                    <div th:each="event : ${events.get(T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDate(year, month, weeklyNumber, 7))}">
+                    <div th:each="event : ${events.get(T(com.gcalendar.maker.utils.DateTimeUtils).getDate(year, month, weeklyNumber, 7))}">
                         <h4 th:text="${event.getSummary()}"></h4>
                     </div>
                 </div>

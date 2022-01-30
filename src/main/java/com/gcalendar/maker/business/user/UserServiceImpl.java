@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll () {
+        return repository.findAll();
+    }
+
+    @Override
     public File makeGoogleCalendar (Long userId, LocalDateTime startDate, LocalDateTime endDate) throws IOException {
         User user = findById(userId);
         Date sDate = Date.from(startDate.atZone(ZoneId.systemDefault()).toInstant());

@@ -111,11 +111,11 @@
             <tr th:each="startDate : ${events.keySet()}" class="mdc-data-table__row">
                 <td class="mdc-data-table__cell">
                     <span class="number-day"
-                          th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDayOfMonth(startDate)}"></span>
+                          th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDayOfMonth(startDate)}"></span>
                     <span class="date"
-                          th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getMonth(startDate)}"></span>,
+                          th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getMonth(startDate)}"></span>,
                     <span class="date"
-                          th:text="${T(br.com.epson.assistant.hub.dto.GoogleCalendarDTO).getDayOfWeek(startDate)}"></span>
+                          th:text="${T(com.gcalendar.maker.utils.DateTimeUtils).getDayOfWeek(startDate)}"></span>
                 </td>
                 <td class="mdc-data-table__cell">
                     <p th:each="event : ${events.get(startDate)}">
