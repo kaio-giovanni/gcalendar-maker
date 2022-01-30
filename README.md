@@ -16,15 +16,23 @@ cd gcalendar-maker
 gradle clean build
 ```
 
-2. Please create an `.env` file in the project root and enter your credentials based on the `.env.example` file.
+2. Create or configure an google cloud project
+
+3. Active the Google Calendar API and get access credentials
+
+4. Create an `.env` file in the project root and enter your credentials based on the `.env.example` file.
 
 #### Run project
 
-- Execute the command bellow:
+1. Execute the command bellow:
 
 ```bash
 gradle bootRun
 ```
+
+2. Access the endpoint `/google-register` and allow the application to access your google calendar.
+
+3. Access the endpoint `/user/calendar` passing your userId, startDate and endDate (format: yyyy-mm-ddThh:mm:ss).
 
 #### Run tests
 
