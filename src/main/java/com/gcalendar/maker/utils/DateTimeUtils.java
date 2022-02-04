@@ -49,7 +49,7 @@ public class DateTimeUtils {
     }
 
     private static LocalDate getLocalDate(String date) {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public static String getDayOfWeek(String date) {

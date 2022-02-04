@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Google Calendar API Quickstart</title>
     <meta charset="utf-8" />
@@ -18,11 +18,10 @@
 
     <pre id="content" style="white-space: pre-wrap"></pre>
 
-    <script type="text/javascript">
+    <script th:inline="javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID =
-        "552294393197-r3qm778scv9f0o68v1hsvcdfi8csq3o5.apps.googleusercontent.com";
-      var API_KEY = "AIzaSyBY112x_IhaYGlz0Iwb-ZnxmaNzTvOGEs4";
+      var CLIENT_ID = /*[[${T(com.gcalendar.maker.utils.DotEnvUtils).getGoogleClientId()}]]*/ "";
+      var API_KEY = /*[[${T(com.gcalendar.maker.utils.DotEnvUtils).getGoogleApiKey()}]]*/ "";
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = [

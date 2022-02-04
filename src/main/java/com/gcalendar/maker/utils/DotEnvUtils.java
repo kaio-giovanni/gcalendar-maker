@@ -31,7 +31,7 @@ public class DotEnvUtils {
         return dotenv.get("GOOGLE_CLIENT_ID");
     }
 
-    public static String getGoogleRedirectUrl () {
-        return dotenv.get("GOOGLE_REDIRECT_URL");
+    public static String getGoogleApiKey () {
+        return dotenv.get("GOOGLE_API_KEY");
     }
 }
