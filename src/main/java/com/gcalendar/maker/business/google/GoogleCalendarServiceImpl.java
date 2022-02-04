@@ -24,6 +24,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,8 +50,9 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
         HttpTransportFactory httpTransport = new DefaultHttpTransportFactory();
         OAuth2Credentials credentials = getGoogleCredentials(user, httpTransport);
 
-        String applicationName = "Application name";
-        return new Calendar.Builder(httpTransport.create(), jacksonFactory, new HttpCredentialsAdapter(credentials))
+        String applicationName = "Google Calendar Maker";
+        return new Calendar.Builder(Objects.requireNonNull(httpTransport.create()),
+                jacksonFactory, new HttpCredentialsAdapter(credentials))
                 .setApplicationName(applicationName)
                 .build();
     }
@@ -61,7 +63,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 
         String calendarId = "primary";
         String pageToken = null;
-        List<GoogleCalendarDto> calendarDTOS = new ArrayList<>();
+        List<GoogleCalendarDto> googleCalendarDtos = new ArrayList<>();
         do {
             Events events = calendarService.events()
                     .list(calendarId)
@@ -72,16 +74,16 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
             List<Event> items = events.getItems();
 
             for (Event event : items) {
-                calendarDTOS.add(new GoogleCalendarDto(event));
+                googleCalendarDtos.add(new GoogleCalendarDto(event));
             }
             pageToken = events.getNextPageToken();
         } while (pageToken != null);
 
-        return calendarDTOS;
+        return googleCalendarDtos;
     }
 
-    public Map<String, List<GoogleCalendarDto>> groupCalendarDtoByStartDate (List<GoogleCalendarDto> calendarDtos) {
-        return calendarDtos
+    public Map<String, List<GoogleCalendarDto>> groupCalendarDtoByStartDate (List<GoogleCalendarDto> googleCalendarDtos) {
+        return googleCalendarDtos
                 .stream()
                 .collect(Collectors.groupingBy(GoogleCalendarDto::getStartDate));
     }

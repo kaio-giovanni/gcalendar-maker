@@ -76,6 +76,16 @@ public class GoogleCalendarDto {
         return dateTime.toLocalDate().toString();
     }
 
+    public String getStartHour() {
+        LocalDateTime dateTime = getLocalDateTime(startDateTime);
+        return dateTime.toLocalTime().toString();
+    }
+
+    public String getEndHour() {
+        LocalDateTime dateTime = getLocalDateTime(endDateTime);
+        return dateTime.toLocalTime().toString().substring(0,5);
+    }
+
     public DateTime formatStartDate (Event event) {
         EventDateTime startEvent = event.getStart();
         if (startEvent.getDateTime() == null) {
