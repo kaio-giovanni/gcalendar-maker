@@ -34,6 +34,16 @@ gradle bootRun
 
 3. Access the endpoint `/user/calendar` passing your userId, startDate and endDate (format: yyyy-mm-ddThh:mm:ss).
 
+Ex:
+<div align="center">
+    <p>
+        <i>Monthly calendar</i>
+    </p>
+    <p>
+        <img width="500" height="500" alt="Monthly calendar" src="./screenshots/MonthlyCalendar.png">
+    </p>
+</div>
+
 #### Run tests
 
 - To run all tests, execute the command bellow:
